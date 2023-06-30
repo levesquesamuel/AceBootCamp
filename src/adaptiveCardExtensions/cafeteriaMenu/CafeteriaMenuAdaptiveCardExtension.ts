@@ -4,20 +4,7 @@ import { CardView } from './cardView/CardView';
 import { QuickView } from './quickView/QuickView';
 import { CafeteriaMenuPropertyPane } from './CafeteriaMenuPropertyPane';
 import { SPHttpClient } from '@microsoft/sp-http'
-
-
-export interface ICafeteriaMenu {
-  dayoftheweek: string;
-  cuisine: string;
-  dayname: string;
-  mealname: string;
-  mealdescription: string;
-  mealrecipe: string;
-  vegetarian: boolean;
-  vegan: boolean;
-  dairyfree: boolean;
-  url: string;
-}
+import { ICafeteriaMenu } from '../../models/ICafeteriaMenu';
 
 export interface ICafeteriaMenuAdaptiveCardExtensionProps {
   title: string;
@@ -63,24 +50,25 @@ export default class CafeteriaMenuAdaptiveCardExtension extends BaseAdaptiveCard
         })
       .then(response => response.json())
       .then(cafeteriaMenus => {
-        const cafeteriaMenu = cafeteriaMenus.value.pop();
+        const spoCafeteriaMenuItem = cafeteriaMenus.value.pop();
         this.setState({
           cafeteriaMenu: {
-            cuisine: cafeteriaMenu.Cuisine,
-            dayname: cafeteriaMenu.DayName,
-            dayoftheweek: cafeteriaMenu.DayofTheWeek,
-            mealdescription: cafeteriaMenu.MealDescription,
-            mealname: cafeteriaMenu.MealName,
-            mealrecipe: cafeteriaMenu.MealRecipe,
-            vegetarian: cafeteriaMenu.Vegetarian,
-            vegan: cafeteriaMenu.Vegan,
-            dairyfree: cafeteriaMenu.DairyFree,
-            url: `${this.context.pageContext.web.absoluteUrl}/lists/MealsBootCamp/DispForm.aspx?ID=${cafeteriaMenu.ID}`
+            cuisine: spoCafeteriaMenuItem.Cuisine,
+            dayname: spoCafeteriaMenuItem.DayName,
+            dayoftheweek: spoCafeteriaMenuItem.DayofTheWeek,
+            mealdescription: spoCafeteriaMenuItem.MealDescription,
+            mealname: spoCafeteriaMenuItem.MealName,
+            mealrecipe: spoCafeteriaMenuItem.MealRecipe,
+            vegetarian: spoCafeteriaMenuItem.Vegetarian,
+            vegan: spoCafeteriaMenuItem.Vegan,
+            dairyfree: spoCafeteriaMenuItem.DairyFree,
+            url: `${this.context.pageContext.web.absoluteUrl}/lists/MealsBootCamp/DispForm.aspx?ID=${spoCafeteriaMenuItem.ID}`
           }
         });
       })
       .catch(error => console.error(error));
   }
+
 
   protected loadPropertyPaneResources(): Promise<void> {
     return import(
