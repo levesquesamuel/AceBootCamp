@@ -5,6 +5,7 @@ import { QuickView } from './quickView/QuickView';
 import { CafeteriaMenuPropertyPane } from './CafeteriaMenuPropertyPane';
 import { SPHttpClient } from '@microsoft/sp-http'
 
+
 export interface ICafeteriaMenu {
   dayoftheweek: string;
   cuisine: string;
@@ -43,7 +44,6 @@ export default class CafeteriaMenuAdaptiveCardExtension extends BaseAdaptiveCard
     this.cardNavigator.register(CARD_VIEW_REGISTRY_ID, () => new CardView());
     this.quickViewNavigator.register(QUICK_VIEW_REGISTRY_ID, () => new QuickView());
 
-    //return Promise.resolve();
     return this._fetchCafeteriaMenus();
   }
 
@@ -51,10 +51,10 @@ export default class CafeteriaMenuAdaptiveCardExtension extends BaseAdaptiveCard
     return 'warning';
   }
 
+  
   private _fetchCafeteriaMenus(): Promise<void> {
     return this.context.spHttpClient
-    //.get(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getByTitle('Announcements')/items?$filter=Important eq 1&$select=Title,ID`,  
-    .get(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getByTitle('MealsBootCamp')/items`,
+       .get(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getByTitle('MealsBootCamp')/items`,
         SPHttpClient.configurations.v1,
         {
           headers: {
