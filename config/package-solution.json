@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "cafeteria-menu-client-side-solution",
+    "id": "ea996d56-b8ff-41f3-b17f-854be62cfd03",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.17.3"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "CafeteriaMenu description"
+      },
+      "longDescription": {
+        "default": "CafeteriaMenu description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "cafeteria-menu Feature",
+        "description": "The feature that activates elements of the cafeteria-menu solution.",
+        "id": "39c5c042-a561-4872-9ee5-81a4cb6e0abe",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/cafeteria-menu.sppkg"
+  }
+}
